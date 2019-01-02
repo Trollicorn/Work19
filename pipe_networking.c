@@ -20,8 +20,8 @@ int server_handshake(int *to_client) {
 	char client[HANDSHAKE_BUFFER_SIZE];
 	read(fd,client,HANDSHAKE_BUFFER_SIZE);
 	printf("client says %s\n", client);
-	remove("wkp");
-	printf("bye bye wkp\n");
+//	remove("wkp");
+//	printf("bye bye wkp\n");
 
 	printf("writing a letter\n");
 	*to_client = open(client, O_WRONLY);
@@ -51,7 +51,7 @@ int client_handshake(int *to_server) {
 	printf("made private\n");
 	
 	write(*to_server, "private", 8);
-	printf("sent my name\n");
+	printf("sent my name (if you get stuck here, then you opened the client before the server. this only works when the client is opened while the server is already open (open the server first))  \n");
 
 	char stuff[HANDSHAKE_BUFFER_SIZE];
 	int fd = open("private",O_RDONLY);
